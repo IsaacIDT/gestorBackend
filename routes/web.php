@@ -29,8 +29,23 @@ Route::resource('provedor', ProvedorController::class);
 Route::resource('productos', ProductoController::class);
 
 //  GET
-Route::get('/usuarios', [UsuarioController::class, 'getUsers']);
-Route::get('/usuarios/{id}', [UsuarioController::class, 'getUser'])->where('id', '[0-9]+');
+Route::middleware(['cors'])->group(function () {
+    Route::get('/usuarios', [UsuarioController::class, 'getUsers']);
+
+    //  POST
+    Route::post('/usuarios/create', [UsuarioController::class, 'createUser']);
+    //Route::post('/usuarios', [UsuarioController::class, 'setUser']);
+
+    //  PUT OR PATCH
+    Route::post('/usuarios/update/{id}', [UsuarioController::class, 'editUser']);
+    //Route::patch('/usuarios/{id}', [UsuarioController::class, 'updateUser']);
+
+    //DELETE
+    Route::delete('/usuarios/{id}', [UsuarioController::class, 'deleteUser']);
+
+    Route::get('/usuarios/{id}', [UsuarioController::class, 'getUser'])->where('id', '[0-9]+');
+
+}); 
 //otra forma de validar que sea un número
 //  ->whereNumber('id');
 
@@ -45,17 +60,6 @@ Route::get('/usuarios/{id}', [UsuarioController::class, 'getUser'])->where('id',
 //  ])
     // ->whereNumber('id')
     // ->whereAlpha('name')
-
-//  POST
-Route::post('/usuarios/create', [UsuarioController::class, 'createUser']);
-Route::post('/usuarios', [UsuarioController::class, 'setUser']);
-
-//  PUT OR PATCH
-Route::get('/usuarios/update/{id}', [UsuarioController::class, 'editUser']);
-Route::patch('/usuarios/{id}', [UsuarioController::class, 'updateUser']);
-
-//DELETE
-Route::delete('/usuarios/{id}', [UsuarioController::class, 'deleteUser']);
 
 
 Route::get('/', function () {

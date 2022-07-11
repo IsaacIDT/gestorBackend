@@ -9,4 +9,20 @@ class UsuarioRepoAction{
         DB::table('usuarios')
                 ->insert($usuario);
     }
+    public static function userEdit($usuario, $id){
+        DB::table('usuarios')
+            ->where('id', '=', $id)
+            ->update([
+                'nombre' => $usuario->nombre,
+                'password' => $usuario->password,
+                'correo' => $usuario->correo,
+                'usuario' => $usuario->usuario
+            ]);
+    }
+    public static function userDelete($id){
+        DB::table('usuarios')
+            ->where('id', '=', $id)
+            ->update(['status' => 300]);
+    
+    }
 }

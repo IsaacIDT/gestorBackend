@@ -2,17 +2,30 @@
 namespace App\Services\Data;
 
 use Illuminate\Support\Facades\DB;
+Use App\Repositories\Data\UsuarioRepoData;
 
 class UsuarioServiceData{
     public static function listUsers(){
-        $all_users = DB::select('select * from usuarios');
-        return $all_users;
+        $users = UsuarioRepoData::retornaUsuarios();
+        return $users;
     }
 
     public static function listUser($id){
-        $user = DB::table('usuarios')
-            ->where('id', '=', $id)
-            ->get();
-        return response()->json($user);
+        $usuario = UsuarioRepoData::retornaUsuario($id);
+        if(count($usuario)>0){
+            return $usuario;
+        }else{
+            return false;
+        }
+    }
+
+    public static function existUser($usuario, $correo){
+        $uCorreo = UsuarioRepoData::existeCorreo($correo); 
+        $uUsuario = UsuarioRepoData::existeUsuario($usuario); 
+        if(count($uCorreo)+count($uUsuario)>0){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

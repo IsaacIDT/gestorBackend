@@ -30,8 +30,7 @@ class UsuarioController extends Controller{
     // }
 
     public function editUser(Request $request, $id){
-        $response = UsuarioServiceAction::userEdit($id);
-        return $response;
+        UsuarioServiceAction::userEdit($request, $id);
     }
 
     // public function updateUser(Request $request, $id){
@@ -39,7 +38,6 @@ class UsuarioController extends Controller{
     // }
 
     public function deleteUser($id){
-        $response = UsuarioServiceAction::userDelete($id);
-        return $response;
+        UsuarioServiceAction::userDelete($id);
     }
 }

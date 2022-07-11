@@ -35,9 +35,19 @@ class RouteServiceProvider extends ServiceProvider
 
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
+            
+            // Route::group([
+            //     'middleware' => ['api', 'cors'],
+            //     'namespace' => $this->namespace,
+            //     'prefix' => 'api',
+            // ], function ($router) {
+            //         //Add you routes here, for example:
+            //         Route::apiResource('/posts','PostController');
+            // });
         });
     }
 
+    
     /**
      * Configure the rate limiters for the application.
      *
