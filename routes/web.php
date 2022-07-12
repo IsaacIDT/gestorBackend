@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProvedorController;
+use App\Http\Controllers\MarcaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,23 +30,41 @@ Route::resource('provedor', ProvedorController::class);
 Route::resource('productos', ProductoController::class);
 
 //  GET
-Route::middleware(['cors'])->group(function () {
+//Route::middleware(['cors'])->group(function () {
     Route::get('/usuarios', [UsuarioController::class, 'getUsers']);
+    Route::get('/usuarios/{id}', [UsuarioController::class, 'getUser'])->where('id', '[0-9]+');
 
     //  POST
     Route::post('/usuarios/create', [UsuarioController::class, 'createUser']);
     //Route::post('/usuarios', [UsuarioController::class, 'setUser']);
 
     //  PUT OR PATCH
-    Route::post('/usuarios/update/{id}', [UsuarioController::class, 'editUser']);
+    Route::post('/usuarios/editar/{id}', [UsuarioController::class, 'editUser']);
     //Route::patch('/usuarios/{id}', [UsuarioController::class, 'updateUser']);
 
     //DELETE
     Route::delete('/usuarios/{id}', [UsuarioController::class, 'deleteUser']);
+    
 
-    Route::get('/usuarios/{id}', [UsuarioController::class, 'getUser'])->where('id', '[0-9]+');
 
-}); 
+
+    Route::get('/marcas', [MarcaController::class, 'getMarcas']);
+    Route::get('/marcas/{id}', [MarcaController::class, 'getMarca']);
+
+    Route::post('/marcas/create', [MarcaController::class, 'createMarca']);
+
+    Route::post('/marcas/editar/{id}', [MarcaController::class, 'editMarca']);
+
+    //Route::patch('/usuarios/{id}', [UsuarioController::class, 'updateUser']);
+
+    //DELETE
+    Route::delete('/marcas/{id}', [MarcaController::class, 'deleteMarca']);
+
+
+
+    // Route::post('/usuarios')
+
+//});
 //otra forma de validar que sea un número
 //  ->whereNumber('id');
 

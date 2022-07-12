@@ -31,6 +31,7 @@ class UsuarioController extends Controller{
 
     public function editUser(Request $request, $id){
         UsuarioServiceAction::userEdit($request, $id);
+        return ["Exito¡??"];
     }
 
     // public function updateUser(Request $request, $id){

@@ -22,9 +22,16 @@ class UsuarioServiceAction{
 
     public static function userEdit($data, $id){
         //validar que el id exista y que las condiciones indicadas en el txt se cumplan
+        var_dump($id);
         $encontro = UsuarioServiceData::listUser($id);
         if($encontro){
-            UsuarioRepoAction::userEdit($data, $id);            
+            $duplicado = UsuarioServiceData::existUser($data['usuario'], $data['correo']);
+            if($duplicado){
+                echo "No se pudo editar ya que las credenciales nuevas ya existen en la base de datos";
+            }else{
+                $BO = UsuarioServiceBO::userCreate($data);
+                UsuarioRepoAction::userEdit($BO, $id);            
+            }    
         }else{
             echo "No se pudo editar ya que el id no coincidió con ninguno";
         }
