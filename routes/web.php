@@ -5,6 +5,8 @@ use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProvedorController;
 use App\Http\Controllers\MarcaController;
+use App\Http\Controllers\PerfilController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,41 +33,41 @@ Route::resource('productos', ProductoController::class);
 
 //  GET
 //Route::middleware(['cors'])->group(function () {
+    //////////////////////////USUARIOS/////////////////////////////
     Route::get('/usuarios', [UsuarioController::class, 'getUsers']);
     Route::get('/usuarios/{id}', [UsuarioController::class, 'getUser'])->where('id', '[0-9]+');
-
     //  POST
     Route::post('/usuarios/create', [UsuarioController::class, 'createUser']);
     //Route::post('/usuarios', [UsuarioController::class, 'setUser']);
-
     //  PUT OR PATCH
     Route::post('/usuarios/editar/{id}', [UsuarioController::class, 'editUser']);
     //Route::patch('/usuarios/{id}', [UsuarioController::class, 'updateUser']);
-
     //DELETE
     Route::delete('/usuarios/{id}', [UsuarioController::class, 'deleteUser']);
     
-
-
-
+    //////////////////////////MARCAS///////////////////////////
+    // GET
     Route::get('/marcas', [MarcaController::class, 'getMarcas']);
     Route::get('/marcas/{id}', [MarcaController::class, 'getMarca']);
-
+    // POST
     Route::post('/marcas/create', [MarcaController::class, 'createMarca']);
-
+    // UPDATE
     Route::post('/marcas/editar/{id}', [MarcaController::class, 'editMarca']);
-
     //Route::patch('/usuarios/{id}', [UsuarioController::class, 'updateUser']);
-
     //DELETE
     Route::delete('/marcas/{id}', [MarcaController::class, 'deleteMarca']);
 
-
-
-    // Route::post('/usuarios')
-
-//});
-//otra forma de validar que sea un número
+    ///////////////////////////PERFILES///////////////////////////
+    // GET
+    Route::get('/perfiles', [PerfilController::class, 'getPerfiles']);
+    Route::get('/perfiles/{id}', [PerfilController::class, 'getPerfil']);
+    // POST
+    Route::post('/perfiles/create', [PerfilController::class, 'createPerfil']);
+    // UPDATE
+    Route::post('/perfiles/editar/{id}', [PerfilController::class, 'editPerfil']);
+   // DELETE
+   Route::delete('/perfiles/{id}', [PerfilController::class, 'deletePerfil']); 
+    //otra forma de validar que sea un número
 //  ->whereNumber('id');
 
 //para alfabeto
