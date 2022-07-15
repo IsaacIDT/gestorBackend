@@ -6,7 +6,7 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProvedorController;
 use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\PerfilController;
-
+use App\Http\Controllers\CategoriaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -67,6 +67,16 @@ Route::resource('productos', ProductoController::class);
     Route::post('/perfiles/editar/{id}', [PerfilController::class, 'editPerfil']);
    // DELETE
    Route::delete('/perfiles/{id}', [PerfilController::class, 'deletePerfil']); 
+
+
+   Route::get('/categorias', [CategoriaController::class, 'getCategorias']);
+   Route::get('/categorias/{id}', [CategoriaController::class, 'getCategoria']);
+   // POST
+   Route::post('/categorias/create', [CategoriaController::class, 'createCategoria']);
+   // UPDATE
+   Route::post('/categorias/editar/{id}', [CategoriaController::class, 'editCategoria']);
+   // DELETE
+   Route::delete('/categorias/{id}', [CategoriaController::class, 'deleteCategoria']); 
     //otra forma de validar que sea un número
 //  ->whereNumber('id');
 
